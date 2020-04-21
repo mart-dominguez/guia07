@@ -45,6 +45,8 @@ public class Catalogo {
 	
 	private Optional<Autor> buscarAutor(Predicate<Autor> p) {
 		return this.autores.stream().filter( p).findFirst();
+		// si encuentra uno con el predicado V --> retorna un Optional con ese autor
+		// si no encuentra retorna un optional vacio
 	}
 	
 	private Optional<Material> buscarMaterial(Predicate<Material> p) {
@@ -86,9 +88,16 @@ public class Catalogo {
 	
 
 	private Autor obtenerAutor(String nombre) {
-		Optional<Autor> autorOpt =this.buscarAutor(a -> a.getNombre().equalsIgnoreCase(nombre));
+		Optional<Autor> autorOpt = this.buscarAutor(a -> a.getNombre().equalsIgnoreCase(nombre));
 		Autor autor = null;
-		// TODO obtener autor
+		if(autorOpt.isEmpty()) {
+			// si no existia lo crea y lo agrega a la lista
+			autor = new Autor(nombre);
+			this.autores.add(autor);
+		} else {
+			// si existia lo retorna
+			autor = autorOpt.get();
+		}
         return autor;
 	}
 	
@@ -125,6 +134,13 @@ public class Catalogo {
 	
 	private Comparator<Material> getCriterio(CriterioOrdenamiento criterio) {
 		return null;
+	}
+	
+	public static void main(String[] args) {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		System.out.println(LocalDate.parse("20-02-2010", formatter).atTime(LocalTime.now()));
+		System.out.println(LocalDate.parse("20-02-2010", formatter).atStartOfDay());
+		
 	}
 
 }
