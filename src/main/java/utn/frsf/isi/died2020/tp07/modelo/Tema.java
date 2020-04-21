@@ -1,0 +1,6 @@
+package utn.frsf.isi.died2020.tp07.modelo;
+
+public enum Tema {
+
+	JAVA,IA,ALGORITMOS,PYTHON,ING_SOFT,AGIL,GESTION,JAVASCRIPT,WEB,MOBILE,REACT,IOT
+}
