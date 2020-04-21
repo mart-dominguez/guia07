@@ -88,11 +88,7 @@ public class Catalogo {
 	private Autor obtenerAutor(String nombre) {
 		Optional<Autor> autorOpt =this.buscarAutor(a -> a.getNombre().equalsIgnoreCase(nombre));
 		Autor autor = null;
-		if(autorOpt.isEmpty()) {
-			autor = new Autor(nombre);
-		} else {
-			autor = autorOpt.get();
-		}
+		// TODO obtener autor
         return autor;
 	}
 	
@@ -127,7 +123,7 @@ public class Catalogo {
 	}
 
 	
-	public Comparator<Material> imprimir(CriterioOrdenamiento criterio) {
+	private Comparator<Material> getCriterio(CriterioOrdenamiento criterio) {
 		return null;
 	}
 

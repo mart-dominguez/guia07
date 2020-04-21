@@ -8,7 +8,8 @@ public class Adquisicion {
 	private LocalDateTime fecha;
 	private Boolean pagado;
 	private Double precio;
-	
+	private Boolean debitado;
+
 	public Adquisicion() {
 		
 	}

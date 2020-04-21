@@ -17,7 +17,7 @@ public abstract class Material implements Comparable<Material>{
 	protected List<Adquisicion> adquisiciones;	
 	
 	public Material() {
-		
+		this.adquisiciones = new ArrayList<Adquisicion>();
 	}
 	
 	public Material(String titulo, LocalDateTime fechaPublicacion, Integer calificacion, Autor autor,
@@ -98,7 +98,11 @@ public abstract class Material implements Comparable<Material>{
 	public void setCalificacion(Integer calificacion) {
 		this.calificacion = calificacion;
 	}
-
+	
+	public void addAdquisicion(Adquisicion a) {
+		this.adquisiciones.add(a);
+	}
+	
 	@Override
 	public String toString() {
 		return this.getClass().getCanonicalName()+ ";id=" + id + "; titulo=" + titulo + "; fechaPublicacion=" + fechaPublicacion + "; calificacion="
