@@ -38,9 +38,20 @@ public abstract class Material implements Comparable<Material>{
 	
 	public abstract Double rating();
 	
+	/**
+	 * La comparación entre 2 materiales primero se realiza por titulo
+	 * y luego por fecha de publicación.
+	 * Debe aparecer primero el  que esté antes alfabeticamente ignorando
+	 * mayusculas y minusculas.
+	 * EN caso de igualdad, se ordena por fecha más reciente de publicacion.
+	 */
 	@Override
 	public int compareTo(Material o) {
-		return 0;
+		int compPorTitulo = this.titulo.toUpperCase().compareTo(o.titulo.toUpperCase());
+		if(compPorTitulo == 0) {
+			return this.fechaPublicacion.isAfter(o.fechaPublicacion) ?  -1 : 1;
+		}
+		return compPorTitulo;
 	}
 
 	public Integer getId() {
