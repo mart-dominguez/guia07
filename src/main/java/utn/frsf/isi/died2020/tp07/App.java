@@ -35,6 +35,12 @@ public class App {
 		System.out.println("Busco Libros que alguno de sus temas sea PYTHON");
 
 		cat.buscarPorTemas(Tema.PYTHON).stream().forEach(System.out::println);
+		
+		System.out.println("=============================================");
+		System.out.println("Busco por rango de calificacion ordenada decrecientemente");
+		System.out.println("");
+		cat.busquedaRangoCalificacionOrdCalif(75,88).stream().forEach(System.out::println);
+
 }
 
 }

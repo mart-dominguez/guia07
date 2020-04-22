@@ -133,7 +133,15 @@ public class Catalogo {
 
 	
 	private Comparator<Material> getCriterio(CriterioOrdenamiento criterio) {
+		switch(criterio) {
+			case CALIFICACION:
+				return (m1,m2) -> m2.getCalificacion().compareTo(m1.getCalificacion());
+		}
 		return null;
+	}
+	
+	public List<Material> busquedaRangoCalificacionOrdCalif(Integer minimo,Integer max){
+		return this.buscarListaMaterial( m -> m.getCalificacion()>= minimo && m.getCalificacion()<=max, this.getCriterio(CriterioOrdenamiento.CALIFICACION));
 	}
 	
 	public static void main(String[] args) {
