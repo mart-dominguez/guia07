@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import utn.frsf.isi.died2020.tp07.modelo2.clasico.Usuario2;
+
 public abstract class Material implements Comparable<Material>{
 	
 	private static Integer _IDS = 1;
@@ -35,6 +37,10 @@ public abstract class Material implements Comparable<Material>{
 	public abstract Double costo(Usuario usuario);
 
 	public abstract Boolean puedeAdquirir(Usuario usuario);
+	
+	public abstract Double costo(Usuario2 usuario);
+
+	public abstract Boolean puedeAdquirir(Usuario2 usuario);
 	
 	public abstract Double rating();
 	

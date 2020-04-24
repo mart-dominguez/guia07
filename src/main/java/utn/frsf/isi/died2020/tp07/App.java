@@ -1,9 +1,14 @@
 package utn.frsf.isi.died2020.tp07;
 
+import java.util.List;
+
 import utn.frsf.isi.died2020.tp07.modelo.Curso;
 import utn.frsf.isi.died2020.tp07.modelo.Material;
 import utn.frsf.isi.died2020.tp07.modelo.Tema;
+import utn.frsf.isi.died2020.tp07.modelo.Usuario;
 import utn.frsf.isi.died2020.tp07.servicios.Catalogo;
+import utn.frsf.isi.died2020.tp07.servicios.Registro;
+import utn.frsf.isi.died2020.tp07.servicios.Registro2;
 
 public class App {
 	
@@ -11,7 +16,7 @@ public class App {
 		System.out.println("Catalogo Learn With US");
 		
 		Catalogo cat = new Catalogo();
-		cat.agregarLibro("BBc Libro 1", "Martin", 50, "01-02-2018", new Tema[] {Tema.IA,Tema.PYTHON}, "12345647", 340);
+		cat.agregarLibro("BBc Libro 1", "Martin", 50, "14-09-2018", new Tema[] {Tema.IA,Tema.PYTHON}, "12345647", 340);
 		cat.agregarLibro("Bca Libro 2", "Pilar", 60, "01-02-2020", new Tema[] {Tema.IOT,Tema.GESTION}, "32433242", 120);
 		cat.agregarLibro("ABc Libro 3", "Francisca", 75, "11-12-2014", new Tema[] {Tema.JAVA,Tema.PYTHON}, "3463345345", 110);
 		cat.agregarLibro("Axc Libro 4", "Martin", 88, "20-03-2019", new Tema[] {Tema.ALGORITMOS,Tema.PYTHON,Tema.JAVASCRIPT}, "736564343", 540);
@@ -40,6 +45,70 @@ public class App {
 		System.out.println("Busco por rango de calificacion ordenada decrecientemente");
 		System.out.println("");
 		cat.busquedaRangoCalificacionOrdCalif(75,88).stream().forEach(System.out::println);
+		
+		System.out.println("=============================================");
+		System.out.println("Busco por rango de fecha ordenada decrecientemente");
+		System.out.println("");
+		cat.busquedaRangoFechaOrdFecha("01-12-2017", "31-12-2020").stream().forEach(System.out::println);
+		
+		
+		Registro2 r2 = new Registro2();
+		r2.registrarGratuito("u1");
+		r2.registrarPremium("u2","1234");
+		
+		List<Material> busqueda = cat.busquedaRangoFechaOrdFecha("01-12-2017", "31-12-2020");
+		
+		r2.adquirir("u1", busqueda.get(1));
+		r2.adquirir("u1", busqueda.get(2));
+		System.out.println("ADQUISICIONES U1");
+		r2.imprimirAdquisiciones("u2");
+		
+		System.out.println("______________________________________");
+		r2.adquirir("u2", busqueda.get(3));
+		r2.adquirir("u2", busqueda.get(4));
+		r2.adquirir("u2", busqueda.get(5));
+		r2.adquirir("u2", busqueda.get(6));
+		r2.adquirir("u2", busqueda.get(7));
+		r2.adquirir("u2", busqueda.get(8));
+		r2.adquirir("u2", busqueda.get(9));
+		System.out.println("______________________________________");
+
+		System.out.println("ADQUISICIONES U2");
+		r2.imprimirAdquisiciones("u2");
+		
+
+		System.out.println("********************************************************");
+		System.out.println("********************************************************");		
+		System.out.println("********************************************************");
+		
+		Registro r1 = new Registro();
+		r1.registrarGratuito("u1");
+		r1.registrarPremium("u2","1234");
+				
+		r1.adquirir("u1", busqueda.get(1));
+		r1.adquirir("u1", busqueda.get(2));
+		System.out.println("ADQUISICIONES U1");
+		r1.imprimirAdquisiciones("u1");
+		
+		System.out.println("______________________________________");
+		r1.adquirir("u2", busqueda.get(3));
+		r1.adquirir("u2", busqueda.get(4));
+		r1.adquirir("u2", busqueda.get(5));
+		r1.adquirir("u2", busqueda.get(6));
+		r1.adquirir("u2", busqueda.get(7));
+		r1.adquirir("u2", busqueda.get(8));
+		r1.adquirir("u2", busqueda.get(9));
+		System.out.println("______________________________________");
+
+		System.out.println("ADQUISICIONES U2");
+		r1.imprimirAdquisiciones("u2");
+		
+		Usuario u1 = r1.buscar("u1");
+		r1.registrarPremium(u1, "4535334543");
+		r1.adquirir("u1", busqueda.get(1));
+		System.out.println("ADQUISICIONES U1");
+		r1.imprimirAdquisiciones("u1");
+
 
 }
 

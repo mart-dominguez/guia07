@@ -3,6 +3,10 @@ package utn.frsf.isi.died2020.tp07.modelo;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import utn.frsf.isi.died2020.tp07.modelo2.clasico.Usuario2;
+import utn.frsf.isi.died2020.tp07.modelo2.clasico.UsuarioGratuito;
+import utn.frsf.isi.died2020.tp07.modelo2.clasico.UsuarioPremium;
+
 public class Libro extends Material{
 
 	private String isbn;
@@ -42,12 +46,22 @@ public class Libro extends Material{
 	
 	@Override
 	public Double costo(Usuario usuario) {
-		return 0.0;
+		return usuario.getCostoLibro().apply(usuario, this);
 	}
 
 	@Override
 	public Boolean puedeAdquirir(Usuario usuario) {
-		return false;
+		return usuario.getPuedeAdquirirLibro().test(usuario);
+	}
+
+	@Override
+	public Double costo(Usuario2 usuario) {
+		return usuario.costoLibro(this);
+	}
+
+	@Override
+	public Boolean puedeAdquirir(Usuario2 usuario) {
+		return usuario.puedeAdquirirLibro();
 	}
 
 }

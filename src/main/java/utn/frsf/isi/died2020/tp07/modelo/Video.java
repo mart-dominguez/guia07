@@ -3,6 +3,8 @@ package utn.frsf.isi.died2020.tp07.modelo;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import utn.frsf.isi.died2020.tp07.modelo2.clasico.Usuario2;
+
 public class Video  extends Material {
 	
 	private Integer duracion;
@@ -32,12 +34,23 @@ public class Video  extends Material {
 	
 	@Override
 	public Double costo(Usuario usuario) {
-		return 0.0;
+		return usuario.getCostoVideo().apply(usuario, this);
 	}
 
 	@Override
 	public Boolean puedeAdquirir(Usuario usuario) {
-		return false;
+		return usuario.getPuedeAdquirirVideo().test(usuario);
+	}
+
+	@Override
+	public Double costo(Usuario2 usuario) {
+		// TODO Auto-generated method stub
+		return usuario.costoVideo(this);
+	}
+
+	@Override
+	public Boolean puedeAdquirir(Usuario2 usuario) {
+		return usuario.puedeAdquirirVideo();
 	}
 
 }

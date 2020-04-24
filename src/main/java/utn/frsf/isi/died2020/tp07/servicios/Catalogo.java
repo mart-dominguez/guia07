@@ -144,6 +144,17 @@ public class Catalogo {
 		return this.buscarListaMaterial( m -> m.getCalificacion()>= minimo && m.getCalificacion()<=max, this.getCriterio(CriterioOrdenamiento.CALIFICACION));
 	}
 	
+	public List<Material> busquedaRangoFechaOrdFecha(String fIni,String fFin){
+		LocalDateTime fechaInic = LocalDate.parse(fIni,formatter).atStartOfDay();
+		LocalDateTime fechaFin = LocalDate.parse(fFin,formatter).atStartOfDay();
+		Comparator<Material> comparador = (m1,m2) -> m2.getFechaPublicacion().compareTo(m1.getFechaPublicacion());		
+		
+		Predicate<Material> filtrarRangoFecha = m -> m.getFechaPublicacion().isAfter(fechaInic) 
+															&& m.getFechaPublicacion().isBefore(fechaFin);
+		
+		return this.buscarListaMaterial(filtrarRangoFecha, comparador);
+	}
+	
 	public static void main(String[] args) {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		System.out.println(LocalDate.parse("20-02-2010", formatter).atTime(LocalTime.now()));

@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 
+import utn.frsf.isi.died2020.tp07.modelo2.clasico.Usuario2;
+
 public class Curso extends Material{
 	
 	public enum Nivel {BASE,AVANZADO,EXPERTO};
@@ -69,11 +71,22 @@ public class Curso extends Material{
 	
 	@Override
 	public Double costo(Usuario usuario) {
-		return 0.0;
+		return usuario.getCostoCurso().apply(usuario, this);
 	}
 
 	@Override
 	public Boolean puedeAdquirir(Usuario usuario) {
-		return false;
+		return usuario.getPuedeAdquirirCurso().test(usuario);
+	}
+
+	@Override
+	public Double costo(Usuario2 usuario) {
+		// TODO Auto-generated method stub
+		return usuario.costoCurso(this);
+	}
+
+	@Override
+	public Boolean puedeAdquirir(Usuario2 usuario) {
+		return usuario.puedeAdquirirCurso();
 	}
 }
